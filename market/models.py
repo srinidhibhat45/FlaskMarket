@@ -1,5 +1,6 @@
 from market import db
 
+
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(30), nullable=False, unique=True)
@@ -8,6 +9,7 @@ class User(db.Model):
     budget = db.Column(db.Integer, nullable=False, default=1000)
     items = db.relationship('Item', backref='owned_user', lazy=True)
 
+
 class Item(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(30), nullable=False, unique=False)
@@ -15,5 +17,6 @@ class Item(db.Model):
     barcode = db.Column(db.String(12), nullable=False, unique=False)
     description = db.Column(db.String(1024), nullable=False)
     owner = db.Column(db.Integer, db.ForeignKey('user.id'))
+
     def __repr__(self):
         return f"item {self.name}"
