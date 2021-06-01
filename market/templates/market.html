@@ -2,6 +2,7 @@
 {% block title %}Market{% endblock title %}
 {% block body %}
 {% include 'includes/items_modals.html' %}
+{% include 'includes/ownedItems_modals.html' %}
 <h1 class="p-4 pt-4">Welcome to Flask Market</h1>
 
 
@@ -30,8 +31,10 @@
                         <td>{{ item.barcode }}</td>
                         <td>{{ item.price }}$</td>
                         <td>
-                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#infoModal-{{item.id}}">More info</button>
-                            <button class="btn btn-success  btn-sm" data-bs-toggle="modal" data-bs-target="#purchaseModal-{{item.id}}">Purchase</button>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#infoModal-{{item.id}}">More info</button>
+                            <button class="btn btn-success  btn-sm" data-bs-toggle="modal"
+                                data-bs-target="#purchaseModal-{{item.id}}">Purchase</button>
                         </td>
                     </tr>
 
@@ -42,10 +45,24 @@
         </div>
     </div>
     <div class="col-sm-4">
-
         <h4>Owned Items</h4>
         <p>Click on sell item to put it back on the market</p>
-
+        <div class="row">
+            {% for owned_item in owned_items %}
+            <div class="col-md-6">
+                <div style="margin-bottom: 5px" class="card text-center bg-dark p-2">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ owned_item.name }}</h5>
+                        <button type="button" class="btn btn-outline-danger" style="margin-bottom: 5px"
+                                data-bs-toggle="modal" data-bs-target="#sellingModal-{{owned_item.id}}">
+                            Sell this Item
+                        </button>
+                        <p class="card-text"><strong>This item costs {{ owned_item.price }}$</strong></p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
 
     </div>
 </div>
