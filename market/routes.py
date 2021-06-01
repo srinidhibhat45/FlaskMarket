@@ -26,8 +26,9 @@ def market_page():
                 flash(
                     f"Congratulations! You purchased {p_item_object.name} for {p_item_object.price}$", category="success")
             else:
-                flash(f"Unfortunately, You don't have enough money to purchase {p_item_object.name}!", category="danger")
-        
+                flash(
+                    f"Unfortunately, You don't have enough money to purchase {p_item_object.name}!", category="danger")
+
         return redirect('/market')
 
     if request.method == "GET":
