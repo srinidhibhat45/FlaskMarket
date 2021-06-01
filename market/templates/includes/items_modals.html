@@ -1,5 +1,5 @@
 <style>
-  .modal-content{
+  .modal-content {
     background-color: #212121;
   }
 </style>
@@ -26,9 +26,10 @@
 </div>
 
 
-<!-- PURHCAASE MODAL -->
+<!-- PURHChASE MODAL -->
 
-<div class="modal fade" id="purchaseModal-{{item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="purchaseModal-{{item.id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+  aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -36,11 +37,17 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        Are You sure you want to buy <b>{{ item.name }}</b> for <b>{{ item.price }}</b>$?
+        <h4 class="text-center">Are You sure you want to buy <b>{{ item.name }}</b> for <b>{{ item.price }}</b>$?</h4>
+        <br>
+        <p class="text-center">By clicking Buy, you will purchase this item.</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-success">Buy Item</button>
+        <form method="POST">
+          {{ purchase_form.hidden_tag() }}
+          <input id="purchased-item" name="purchased_item" type="hidden" value="{{ item.name }}">
+          {{ purchase_form.submit(class="btn btn-success") }}
+        </form>
       </div>
     </div>
   </div>
