@@ -91,3 +91,8 @@ def logout_page():
     logout_user()
     flash('You have Been logged out!', category='warning')
     return redirect('/')
+
+
+@app.errorhandler(404)
+def not_found(e):
+  return render_template('404.html'), 404
